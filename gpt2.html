@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walk It - Move & Earn</title>
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/128/609/609803.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat Alternates', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+            background: linear-gradient(-45deg, #0F2027, #203A43, #2C5364, #000DFF);
+            background-size: 400% 400%;
+            animation: gradientBG 8s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 10px 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(90deg, #FF512F, #DD2476);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 81, 47, 0.5);
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        /* Bottom Navigation Bar */
+        .bottom-nav {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            padding: 15px 0;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .bottom-nav a {
+            color: white;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .bottom-nav a:hover {
+            opacity: 0.7;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container" id="home-page">
+        <h1>Walk It</h1>
+        <p>Get rewarded for every step you take. Move more, earn more.</p>
+        <button class="btn">Stay in the Loop</button>
+    </div>
+
+    <div class="container" id="privacy-page" style="display: none;">
+        <h1>Privacy Policy</h1>
+        <p>We value your privacy. Read our policy here.</p>
+        <button class="btn" onclick="showPage('home')">Go Back</button>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+        <a href="#" onclick="showPage('privacy')">Privacy</a>
+    </div>
+
+    <script>
+        function showPage(page) {
+            document.getElementById('home-page').style.display = page === 'home' ? 'flex' : 'none';
+            document.getElementById('privacy-page').style.display = page === 'privacy' ? 'flex' : 'none';
+        }
+    </script>
+
+</body>
+</html>
