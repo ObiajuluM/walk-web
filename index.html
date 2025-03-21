@@ -74,6 +74,13 @@
             margin: 10px 0 20px;
         }
 
+        .btn-container {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Space between buttons */
+            justify-content: center;
+        }
+
         .btn {
             background-color: rgba(255, 255, 255, 0.8);
             border: none;
@@ -94,23 +101,33 @@
             transform: scale(0.95);
         }
 
-        .footer {
-            position: absolute;
-            bottom: 20px;
-            color: white;
-            font-size: 14px;
+        .x-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.3s ease;
         }
 
-        .footer a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: opacity 0.3s ease;
+        .x-btn svg {
+            width: 20px;
+            height: 20px;
         }
 
-        .footer a:hover {
-            opacity: 0.7;
+        .x-btn:hover {
+            background-color: rgba(255, 255, 255, 1);
+            transform: scale(1.1);
         }
+
+        .x-btn:active {
+            transform: scale(0.95);
+        }
+
     </style>
 </head>
 <body>
@@ -126,13 +143,16 @@
     <div class="container">
         <h1>Walk It</h1>
         <p>Get rewarded for every step you take. Move more, earn more.</p>
-        <button class="btn" onclick="window.location.href='https://x.com/WalkItApp'">Stay in the Loop</button>
+        
+        <div class="btn-container">
+            <button class="btn" onclick="window.location.href='https://forms.gle/PU82fdteF1e5y5nb8'">Stay in the Loop</button>
+            <button class="x-btn" onclick="window.location.href='https://x.com/WalkItApp'">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black">
+                    <path d="M22.9 2H18.6L13.3 9.9 7.3 2H1.1L9.4 13.2 1.1 22H5.4L11.3 14.5 17.9 22H24L14.9 11.1 22.9 2z"/>
+                </svg>
+            </button>
+        </div>
     </div>
-
-    <!-- Footer Navigation -->
-<!--     <div class="footer">
-        <a href="privacy.html">Privacy Policy</a>
-    </div> -->
 
 </body>
 </html>
