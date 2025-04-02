@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walk It</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👟</text></svg>">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat Alternates', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(-45deg, rgba(65, 115, 243, 1), rgba(112, 172, 185, 1), rgba(241, 109, 117, 1));
+            background-size: 400% 400%;
+            animation: gradientAnimation 8s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Moving Background Lines */
+        .line {
+            position: absolute;
+            width: 2px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.2);
+            animation: moveLines 6s linear infinite;
+        }
+
+        @keyframes moveLines {
+            from { transform: translateY(-100vh); }
+            to { transform: translateY(100vh); }
+        }
+
+        .line:nth-child(1) { left: 10%; animation-duration: 6s; }
+        .line:nth-child(2) { left: 30%; animation-duration: 7s; }
+        .line:nth-child(3) { left: 50%; animation-duration: 5s; }
+        .line:nth-child(4) { left: 70%; animation-duration: 6.5s; }
+        .line:nth-child(5) { left: 90%; animation-duration: 5.5s; }
+
+        .container {
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 10px 0 20px;
+        }
+
+        .btn-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .btn {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: rgba(255, 255, 255, 1);
+            transform: scale(1.05);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .x-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+
+        .x-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .x-btn:hover {
+            background-color: rgba(255, 255, 255, 1);
+            transform: scale(1.1);
+        }
+
+        .x-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Transparent Bottom Navbar */
+        .navbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            padding: 15px 0;
+            text-align: center;
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #f1b109;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .navbar a {
+                font-size: 0.9rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Background Animated Lines -->
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Walk It</h1>
+        <p>Get rewarded for every step you take. Move more, earn more.</p>
+        
+        <div class="btn-container">
+            <button class="btn" onclick="window.open('https://forms.gle/PU82fdteF1e5y5nb8', '_blank')">
+                Stay in the Loop
+            </button>
+            <button class="x-btn" onclick="window.open('https://x.com/WalkItApp', '_blank')">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black">
+                    <path d="M22.9 2H18.6L13.3 9.9 7.3 2H1.1L9.4 13.2 1.1 22H5.4L11.3 14.5 17.9 22H24L14.9 11.1 22.9 2z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Transparent Bottom Navbar -->
+    <div class="navbar">
+        <a href="privacy-policy.html" target="_blank">Privacy Policy</a>
+    </div>
+
+</body>
+</html>
