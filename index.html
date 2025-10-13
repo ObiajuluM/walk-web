@@ -1,209 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walk It</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👟</text></svg>">
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;700&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Walk It</title>
+  <link rel="icon" href="logo.png" type="image/png" />
+  <link rel="shortcut icon" href="logo.png" type="image/png" />
+  <link rel="apple-touch-icon" href="logo.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <style>
+    /* Import fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Nata+Sans:wght@400;600;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat Alternates', sans-serif;
-        }
 
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-            background: linear-gradient(-45deg, rgba(65, 115, 243, 1), rgba(112, 172, 185, 1), rgba(241, 109, 117, 1));
-            background-size: 400% 400%;
-            animation: gradientAnimation 8s ease infinite;
-        }
 
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Nata Sans', sans-serif;
+      height: 100vh;
+      background: linear-gradient(to bottom right,
+          rgba(65, 115, 243, 1),
+          rgba(112, 172, 185, 1),
+          rgba(241, 109, 117, 1));
+      background-size: 250% 250%;
+      animation: bg-shift 18s ease-in-out infinite;
+      color: white;
+      overflow: hidden;
+      cursor: url('logo.png'), auto;
+      /* 👟 replace with your shoe image */
+    }
 
-        /* Moving Background Lines */
-        .line {
-            position: absolute;
-            width: 2px;
-            height: 100vh;
-            background: rgba(255, 255, 255, 0.2);
-            animation: moveLines 6s linear infinite;
-        }
+    @keyframes bg-shift {
+      0% {
+        background-position: 0% 50%;
+      }
 
-        @keyframes moveLines {
-            from { transform: translateY(-100vh); }
-            to { transform: translateY(100vh); }
-        }
+      50% {
+        background-position: 100% 50%;
+      }
 
-        .line:nth-child(1) { left: 10%; animation-duration: 6s; }
-        .line:nth-child(2) { left: 30%; animation-duration: 7s; }
-        .line:nth-child(3) { left: 50%; animation-duration: 5s; }
-        .line:nth-child(4) { left: 70%; animation-duration: 6.5s; }
-        .line:nth-child(5) { left: 90%; animation-duration: 5.5s; }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
 
-        .container {
-            text-align: center;
-            color: white;
-            position: relative;
-            z-index: 2;
-        }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 80px;
+      /* Increased padding around navbar */
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      box-sizing: border-box;
+    }
 
-        h1 {
-            font-size: 3rem;
-            font-weight: 700;
-        }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
 
-        p {
-            font-size: 1.2rem;
-            margin: 10px 0 20px;
-        }
+    .logo img {
+      height: 64px;
+      width: auto;
+      object-fit: contain;
+      background-color: transparent;
+      /* ensure no background color */
+      mix-blend-mode: multiply;
+      /* helps hide white box backgrounds */
+    }
 
-        .btn-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
 
-        .btn {
-            background-color: rgba(255, 255, 255, 0.8);
-            border: none;
-            padding: 12px 24px;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: transform 0.2s ease, background-color 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      transition: 0.2s ease;
+    }
 
-        .btn:hover {
-            background-color: rgba(255, 255, 255, 1);
-            transform: scale(1.05);
-        }
+    nav a:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
 
-        .btn:active {
-            transform: scale(0.95);
-        }
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+    }
 
-        .btn svg {
-            margin-right: 8px;
-            width: 20px;
-            height: 20px;
-        }
+    h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: 18vw;
+      font-weight: 900;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      line-height: 1;
+      margin: 0;
+      background: linear-gradient(180deg, #ffffff 0%, #4da3ff 100%);
+      background-size: 100% 200%;
+      animation: gradient-slide 6s ease-in-out infinite alternate;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
 
-        /* iOS Button Specific */
-        .ios-btn {
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-        }
+    @keyframes gradient-slide {
+      0% {
+        background-position: 50% 0%;
+      }
 
-        .ios-btn:hover {
-            background-color: rgba(0, 0, 0, 1);
-        }
+      100% {
+        background-position: 50% 100%;
+      }
+    }
 
-        /* Transparent Bottom Navbar */
-        .navbar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(8px);
-            padding: 15px 0;
-            text-align: center;
-            transition: transform 0.4s ease-in-out;
-        }
+    .tagline {
+      margin-top: 12px;
+      font-size: clamp(16px, 2.2vw, 28px);
+      font-weight: 500;
+      line-height: 1.3;
+      opacity: 0.95;
+    }
 
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 12px 20px;
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(6px);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      z-index: 10;
+      box-sizing: border-box;
+    }
 
-        .navbar a:hover {
-            color: #f1b109;
-        }
+    .bottom-nav .social-icons {
+      position: static;
+      transform: none;
+      top: auto;
+      left: auto;
+      gap: 24px;
+      display: flex;
+      align-items: center;
+    }
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
+    .bottom-nav .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 16px;
+      /* label size */
+      opacity: 0.95;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
 
-            p {
-                font-size: 1rem;
-            }
+    .bottom-nav .social-icons a i {
+      font-size: 20px;
+      /* icon size */
+    }
 
-            .btn {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
+    .bottom-nav .social-icons a:hover {
+      transform: translateY(-2px);
+      opacity: 1;
+    }
 
-            .navbar a {
-                font-size: 0.9rem;
-            }
-        }
+    .social-icons {
+      position: absolute;
+      top: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+    }
 
-    </style>
+    .social-icons a {
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+      opacity: 0.9;
+      transition: 0.3s;
+    }
+
+    .social-icons a:hover {
+      opacity: 0.6;
+    }
+
+    .store-badges {
+      margin-top: 20px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .store-badges a {
+      color: #ffffff;
+      font-size: 40px;
+      /* icon size */
+      opacity: 0.95;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .store-badges a:hover {
+      transform: translateY(-2px);
+      opacity: 1;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-top: 20px;
+      backdrop-filter: blur(6px);
+    }
+  </style>
 </head>
+
 <body>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Walk It Logo" />
 
-    <!-- Background Animated Lines -->
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-
-    <!-- Main Content -->
-    <div class="container">
-        <h1>Walk It</h1>
-        <p>Get rewarded for every step you take. Move more, earn more.</p>
-        
-        <div class="btn-container">
-            <button class="btn" onclick="window.open('https://x.com/WalkItApp', '_blank')">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-                Join our X Community
-            </button>
-
-            <button class="btn" onclick="window.location.href='https://github.com/ObiajuluM/walk-web/releases/download/0.0.1/app-release.apk'">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#3ddc84">
-                    <path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.3-.15-.68-.04-.85.26l-1.88 3.24c-2.86-1.21-6.08-1.21-8.94 0L5.65 5.71c-.16-.3-.54-.41-.85-.26-.3.16-.42.54-.26.85L6.4 9.48C3.3 11.25 1.28 14.44 1 18h22c-.28-3.56-2.3-6.75-5.4-8.52zM7 15.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25zm10 0c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"/>
-                </svg>
-                Download for Android
-            </button>
-
-            <button class="btn ios-btn" onclick="window.open('https://forms.gle/ZoEqUKNk9he8HuHJA', '_blank')">
-                Join the Waitlist
-            </button>
-        </div>
     </div>
 
-    <!-- Transparent Bottom Navbar -->
-    <div class="navbar">
-        <a href="privacy-policy.html" target="_blank">Privacy Policy</a>
+    <!-- <div class="social-icons">
+      <a href="https://discord.gg/8at5m9Bx" title="Discord" aria-label="Discord"><i
+          class="fa-brands fa-discord"></i></a>
+      <a href="https://x.com/walkitapp" title="X">𝕏</a>
+    </div> -->
+
+    <nav>
+      <ul>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>WALK IT!</h1>
+    <p class="tagline">The lifestyle app that pays you to walk</p>
+    <div class="store-badges">
+      <div class="card">
+        <a href="#" title="Get it on Google Play" aria-label="Google Play"><i class="fa-brands fa-google-play"></i></a>
+      </div>
+      <div class="card">
+        <a href="#" title="Download on the App Store" aria-label="App Store"><i
+            class="fa-brands fa-app-store-ios"></i></a>
+      </div>
     </div>
+  </main>
+
+  <div class="bottom-nav">
+    <div class="social-icons">
+      <a href="https://discord.gg/8at5m9Bx" title="Discord" aria-label="Discord" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-discord"></i><span>Discord</span></a>
+      <a href="https://x.com/walkitapp" title="X" aria-label="X" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i><span>X</span></a>
+    </div>
+  </div>
 
 </body>
+
 </html>
