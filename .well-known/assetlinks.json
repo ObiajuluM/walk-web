@@ -41,6 +41,15 @@
         "E9:1B:69:D9:95:A8:78:71:1D:76:71:8F:01:4B:64:51:44:F3:9A:64:D4:54:4D:89:DE:C7:CB:8C:D1:8B:6C:7E"
       ]
     }
+  },  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.walkitapp.walkitapp",
+      "sha256_cert_fingerprints":
+        ["E9:1B:69:D9:95:A8:78:71:1D:76:71:8F:01:4B:64:51:44:F3:9A:64:D4:54:4D:89:DE:C7:CB:8C:D1:8B:6C:7E"]
+    }
   }
 ]
+
 
