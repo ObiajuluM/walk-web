@@ -2,277 +2,329 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Walk It</title>
-  <link rel="icon" href="logo.png" type="image/png" />
-  <link rel="shortcut icon" href="logo.png" type="image/png" />
-  <link rel="apple-touch-icon" href="logo.png" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-  <style>
-    /* Import fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Nata+Sans:wght@400;600;800&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Walk It - The lifestyle app that pays you to walk</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "rgb(80, 117, 231)", // Main blue
+                        "primary-hover": "rgb(60, 97, 211)",
+                        "secondary": "rgb(120, 147, 231)", // Lighter blue
+                        "accent": "rgb(100, 137, 231)", // Accent blue
+                        "text-main": "rgb(40, 57, 115)", // Deep blue for text
+                        "sage-text": "rgb(80, 117, 231)", // Main blue for headings/logo
+                        "text-sub": "#64748B", // Soft Charcoal Gray (unchanged for contrast)
+                        "background-light": "rgb(235, 239, 252)", // Very light blue
+                    },
+                    fontFamily: {
+                        "display": ["Quicksand", "sans-serif"],
+                        "body": ["Montserrat", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "1.5rem",
+                        "xl": "2rem",
+                        "2xl": "2.5rem",
+                        "3xl": "3rem",
+                        "blob": "40% 60% 70% 30% / 40% 50% 60% 50%",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "soft": "0 20px 40px -10px rgba(134, 239, 172, 0.15)",
+                        "glow": "0 0 20px rgba(252, 211, 77, 0.5)",
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: rgb(235, 239, 252);
+            color: rgb(40, 57, 115);
+        }
+
+        h1,
+        h2,
+        h3,
+        .font-display {
+            font-family: 'Quicksand', sans-serif;
+        }
 
 
+        .bubble-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.5;
+            animation: float 10s ease-in-out infinite;
+            background: rgb(80, 117, 231) !important;
+        }
 
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Nata Sans', sans-serif;
-      height: 100vh;
-      background: linear-gradient(to bottom right,
-          rgba(65, 115, 243, 1),
-          rgba(112, 172, 185, 1),
-          rgba(241, 109, 117, 1));
-      /* stop background animation */
-      color: white;
-      overflow: hidden;
-      cursor: url('logo.png'), auto;
-      /* 👟 replace with your shoe image */
-    }
+        @keyframes float {
+            0% {
+                transform: translateY(0px) scale(1);
+            }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 30px 80px;
-      /* Increased padding around navbar */
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      z-index: 10;
-      box-sizing: border-box;
-    }
+            50% {
+                transform: translateY(-20px) scale(1.05);
+            }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: 2px;
-    }
-
-    .logo img {
-      height: 64px;
-      width: auto;
-      object-fit: contain;
-      background-color: transparent;
-      /* ensure no background color */
-      mix-blend-mode: multiply;
-      /* helps hide white box backgrounds */
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 30px;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 16px;
-      transition: 0.2s ease;
-    }
-
-    nav a:hover {
-      opacity: 0.8;
-      text-decoration: underline;
-    }
-
-    main {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
-      text-align: center;
-    }
-
-    h1 {
-      font-family: 'Inter', sans-serif;
-      font-size: 18vw;
-      font-weight: 900;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      line-height: 1;
-      margin: 0;
-      background: linear-gradient(180deg, #ffffff 0%, #4da3ff 100%);
-      background-size: 100% 200%;
-      animation: gradient-slide 6s ease-in-out infinite alternate;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      color: transparent;
-    }
-
-    @keyframes gradient-slide {
-      0% {
-        background-position: 50% 0%;
-      }
-
-      100% {
-        background-position: 50% 100%;
-      }
-    }
-
-    .tagline {
-      margin-top: 12px;
-      font-size: clamp(16px, 2.2vw, 28px);
-      font-weight: 500;
-      line-height: 1.3;
-      opacity: 0.95;
-    }
-
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      padding: 12px 20px;
-      background: rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(6px);
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-      z-index: 10;
-      box-sizing: border-box;
-    }
-
-    .bottom-nav .social-icons {
-      position: static;
-      transform: none;
-      top: auto;
-      left: auto;
-      gap: 24px;
-      display: flex;
-      align-items: center;
-    }
-
-    .bottom-nav .social-icons a {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 16px;
-      /* label size */
-      opacity: 0.95;
-      transition: transform 0.2s ease, opacity 0.2s ease;
-    }
-
-    .bottom-nav .social-icons a i {
-      font-size: 20px;
-      /* icon size */
-    }
-
-    .bottom-nav .social-icons a:hover {
-      transform: translateY(-2px);
-      opacity: 1;
-    }
-
-    .social-icons {
-      position: absolute;
-      top: 25px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 20px;
-    }
-
-    .social-icons a {
-      color: white;
-      text-decoration: none;
-      font-size: 20px;
-      opacity: 0.9;
-      transition: 0.3s;
-    }
-
-    .social-icons a:hover {
-      opacity: 0.6;
-    }
-
-    .store-badges {
-      margin-top: 20px;
-      display: flex;
-      gap: 20px;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .store-badges a {
-      color: #ffffff;
-      font-size: 40px;
-      /* icon size */
-      opacity: 0.95;
-      transition: transform 0.2s ease, opacity 0.2s ease;
-    }
-
-    .store-badges a:hover {
-      transform: translateY(-2px);
-      opacity: 1;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 14px;
-      padding: 18px 20px;
-      margin-top: 20px;
-      backdrop-filter: blur(6px);
-    }
-  </style>
+            100% {
+                transform: translateY(0px) scale(1);
+            }
+        }
+    </style>
 </head>
 
-<body>
-  <header>
-    <div class="logo">
-      <img src="logo.png" alt="Walk It Logo" />
-
+<body
+    class="bg-background-light text-slate-900 overflow-x-hidden antialiased selection:bg-primary selection:text-slate-900">
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-10">
+        <div class="bubble-shape bg-secondary w-[600px] h-[600px] top-[-15%] left-[-10%] opacity-30"></div>
+        <div class="bubble-shape bg-accent w-[500px] h-[500px] bottom-[-10%] right-[-10%] opacity-30 delay-1000"></div>
+        <div class="bubble-shape bg-primary w-[400px] h-[400px] top-[40%] right-[15%] opacity-20 delay-2000"></div>
+        <div class="bubble-shape bg-secondary w-[300px] h-[300px] bottom-[20%] left-[5%] opacity-20"></div>
     </div>
+    <div class="relative flex min-h-screen w-full flex-col">
+        <header
+            class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap bg-background-light/80 backdrop-blur-md px-6 py-4 lg:px-40 border-b border-transparent">
+            <div class="flex items-center gap-2">
+                <a href="index.html"
+                    class="flex items-center justify-center size-10 bg-secondary/20 rounded-full text-sage-text hover:bg-secondary/40 transition-colors"
+                    aria-label="Home">
+                    <span class="material-symbols-outlined text-2xl">directions_walk</span>
+                </a>
+                <a href="index.html"
+                    class="text-sage-text text-2xl font-bold tracking-tight font-display hover:underline"
+                    style="text-decoration-thickness: 2px;">Walk It</a>
+            </div>
+            <nav class="hidden md:flex flex-1 justify-end items-center gap-8">
+                <div class="flex items-center gap-8 font-display">
+                    <a class="text-text-sub text-sm font-semibold hover:text-sage-text transition-colors" href="#">How
+                        it works</a>
+                    <a class="text-text-sub text-sm font-semibold hover:text-sage-text transition-colors"
+                        href="#">Features</a>
+                    <a href="https://discord.com" target="_blank" aria-label="Discord"
+                        class="hover:text-sage-text transition-colors">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            style="display:inline;vertical-align:middle;">
+                            <path
+                                d="M20.317 4.369a19.791 19.791 0 0 0-4.885-1.515.07.07 0 0 0-.073.035c-.211.375-.447.864-.614 1.249-1.844-.276-3.68-.276-5.515 0-.167-.385-.403-.874-.614-1.249a.07.07 0 0 0-.073-.035A19.736 19.736 0 0 0 3.683 4.369a.064.064 0 0 0-.028.027C.533 8.083-.32 11.635.099 15.142a.073.073 0 0 0 .028.051c2.052 1.507 4.042 2.422 5.992 3.03a.07.07 0 0 0 .078-.027c.461-.63.873-1.295 1.226-1.994a.07.07 0 0 0-.038-.098c-.652-.247-1.27-.549-1.857-.892a.07.07 0 0 1-.007-.116c.125-.094.25-.19.368-.288a.07.07 0 0 1 .073-.009c3.927 1.793 8.18 1.793 12.06 0a.07.07 0 0 1 .073.009c.119.098.243.194.368.288a.07.07 0 0 1-.007.116c-.587.343-1.205.645-1.857.892a.07.07 0 0 0-.038.098c.353.699.765 1.364 1.226 1.994a.07.07 0 0 0 .078.027c1.95-.608 3.94-1.523 5.992-3.03a.073.073 0 0 0 .028-.051c.5-4.088-.838-7.614-3.591-10.746a.064.064 0 0 0-.028-.027ZM8.02 14.331c-.789 0-1.438-.724-1.438-1.613 0-.889.637-1.613 1.438-1.613.789 0 1.438.724 1.438 1.613 0 .889-.637 1.613-1.438 1.613Zm7.96 0c-.789 0-1.438-.724-1.438-1.613 0-.889.637-1.613 1.438-1.613.789 0 1.438.724 1.438 1.613 0 .889-.637 1.613-1.438 1.613Z"
+                                fill="#5865F2" />
+                        </svg>
+                    </a>
+                    <a href="https://x.com" target="_blank" aria-label="X"
+                        class="hover:text-sage-text transition-colors">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            style="display:inline;vertical-align:middle;">
+                            <path
+                                d="M17.211 3H20.5L13.81 10.09L21.5 21H15.5L11.01 14.68L5.97 21H2.68L9.74 13.41L2.5 3H8.68L12.73 8.74L17.211 3ZM16.37 19.5H18.19L7.63 4.5H5.69L16.37 19.5Z"
+                                fill="#000" />
+                        </svg>
+                    </a>
+                </div>
+                <button
+                    class="flex items-center justify-center rounded-full h-10 px-6 bg-primary text-slate-900 text-sm font-bold shadow-sm hover:shadow-glow hover:scale-105 transition-all duration-300 font-display">
+                    Join Beta
+                </button>
+            </nav>
+            <button class="md:hidden p-2 text-sage-text">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </header>
+        <main class="flex-1">
+            <section class="relative px-6 py-16 lg:py-24 lg:px-40 flex flex-col items-center text-center">
+                <div class="max-w-[800px] flex flex-col gap-6 items-center z-10">
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/50 border border-secondary/20 text-sage-text text-xs font-bold uppercase tracking-wider mb-2 backdrop-blur-sm">
+                        <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                        Beta Access Open
+                    </div>
+                    <h1
+                        class="text-sage-text text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight font-display">
+                        The lifestyle app that pays you to walk
+                    </h1>
+                    <h2 class="text-text-sub text-lg md:text-xl font-medium leading-relaxed max-w-[600px]">
+                        A simple, fun way to turn your daily steps into progress. Level up your health, one step at a
+                        time.
+                    </h2>
+                    <div class="pt-6">
+                        <button
+                            class="flex items-center justify-center rounded-full h-14 px-10 bg-primary text-slate-900 text-lg font-bold shadow-lg shadow-primary/20 hover:shadow-glow hover:-translate-y-1 transition-all duration-300 font-display">
+                            Join Beta
+                        </button>
+                    </div>
+                </div>
+                <div
+                    class="mt-20 w-full max-w-[960px] relative rounded-[3rem] overflow-hidden shadow-soft aspect-video md:aspect-[21/9] ring-8 ring-white/50">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10"></div>
+                    <img alt="Person walking through a peaceful green forest path" class="w-full h-full object-cover"
+                        data-alt="Person walking in nature"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcvgLqOxrf186YVTVdAJapjJUBR2TwO_YQO67MdEfUqWBh-3RdgvtdkRfs5nyOXxasV71svf_5dEzClWKvfJJD-AuSm7Lfk3bXPcAv8JHLCYOl1SVcR-Doo-uIo15tfeJ4EJCAczHD_i5Jo3GFnC7YmuNP5MhWjgQKOSjTyR1h0aKErF4xKtuWY3hupiveVxYY3BeRDomgeGJ9_bfQ3ffizyWvHq9JhvuDDkm8QoDSgPRgP48w7T9kyk9RLsnnfsGDjeM66RCQs6c" />
+                    <div class="absolute bottom-8 left-8 z-20 text-white text-left font-display">
+                        <div
+                            class="bg-white/20 backdrop-blur-md px-6 py-3 rounded-2xl inline-block border border-white/20">
+                            <p class="font-bold text-lg">Morning Stroll</p>
+                            <div class="flex items-center gap-1 text-sm opacity-90">
+                                <span class="material-symbols-outlined text-[16px]">location_on</span>
+                                <span data-location="Kyoto, Japan">Kyoto, Japan</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="px-6 py-20 lg:px-40 relative">
+                <div class="max-w-[960px] mx-auto">
+                    <div class="text-center mb-20">
+                        <h2 class="text-sage-text text-3xl font-bold mb-4">How it works</h2>
+                        <p class="text-text-sub max-w-lg mx-auto">Three simple steps to transform your daily routine
+                            into a rewarding game.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
+                        <div class="flex flex-col items-center text-center group">
+                            <div class="relative mb-6">
+                                <div class="absolute inset-0 bg-secondary/30 rounded-full blur-xl scale-110"></div>
+                                <div
+                                    class="relative size-32 flex items-center justify-center bg-secondary/20 rounded-full text-5xl group-hover:scale-110 transition-transform duration-300">
+                                    👟
+                                </div>
+                            </div>
+                            <h3 class="text-sage-text text-2xl font-bold mb-3">Walk</h3>
+                            <p class="text-text-sub leading-relaxed font-medium">Just move naturally throughout your
+                                day. Whether it's a commute or a hike.</p>
+                        </div>
+                        <div class="flex flex-col items-center text-center group">
+                            <div class="relative mb-6">
+                                <div class="absolute inset-0 bg-primary/30 rounded-full blur-xl scale-110"></div>
+                                <div
+                                    class="relative size-32 flex items-center justify-center bg-primary/20 rounded-full text-5xl group-hover:scale-110 transition-transform duration-300">
+                                    🪙
+                                </div>
+                            </div>
+                            <h3 class="text-sage-text text-2xl font-bold mb-3">Earn</h3>
+                            <p class="text-text-sub leading-relaxed font-medium">Every 1,000 steps turns into 10 Aura
+                                points automatically.</p>
+                        </div>
+                        <div class="flex flex-col items-center text-center group">
+                            <div class="relative mb-6">
+                                <div class="absolute inset-0 bg-accent/30 rounded-full blur-xl scale-110"></div>
+                                <div
+                                    class="relative size-32 flex items-center justify-center bg-accent/20 rounded-full text-5xl group-hover:scale-110 transition-transform duration-300">
+                                    🌱
+                                </div>
+                            </div>
+                            <h3 class="text-sage-text text-2xl font-bold mb-3">Evolve</h3>
+                            <p class="text-text-sub leading-relaxed font-medium">Watch your level grow as you stay
+                                consistent. Unlock new avatars.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="px-6 py-24 lg:px-40">
+                <div class="max-w-[960px] mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="text-sage-text text-3xl font-bold">Why Walk It?</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div
+                            class="bg-secondary/5 p-10 rounded-3xl transition-transform duration-300 hover:-translate-y-2 flex flex-col gap-4 items-start h-full border border-secondary/10">
+                            <div
+                                class="size-14 rounded-2xl bg-white flex items-center justify-center text-3xl shadow-sm text-secondary">
+                                📱
+                            </div>
+                            <div>
+                                <h3 class="text-text-main text-xl font-bold mb-2">Passive Tracking</h3>
+                                <p class="text-text-sub text-sm leading-relaxed font-medium">Runs quietly in the
+                                    background. Minimal battery usage, maximum accuracy.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-accent/5 p-10 rounded-3xl transition-transform duration-300 hover:-translate-y-2 flex flex-col gap-4 items-start h-full border border-accent/10">
+                            <div
+                                class="size-14 rounded-2xl bg-white flex items-center justify-center text-3xl shadow-sm text-accent">
+                                🌙
+                            </div>
+                            <div>
+                                <h3 class="text-text-main text-xl font-bold mb-2">11 PM Sync</h3>
+                                <p class="text-text-sub text-sm leading-relaxed font-medium">End your day with a
+                                    satisfying sync. See your daily aura collected before sleep.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-primary/5 p-10 rounded-3xl transition-transform duration-300 hover:-translate-y-2 flex flex-col gap-4 items-start h-full border border-primary/10">
+                            <div
+                                class="size-14 rounded-2xl bg-white flex items-center justify-center text-3xl shadow-sm text-primary">
+                                👥
+                            </div>
+                            <div>
+                                <h3 class="text-text-main text-xl font-bold mb-2">Community</h3>
+                                <p class="text-text-sub text-sm leading-relaxed font-medium">Join walking challenges
+                                    with friends. Compete on the cheerful leaderboard.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="px-6 pb-24 lg:px-40">
+                <div
+                    class="max-w-[960px] mx-auto bg-white/40 backdrop-blur-md border border-white/60 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden shadow-xl shadow-secondary/5">
+                    <div class="absolute top-0 right-0 w-80 h-80 bg-accent/20 rounded-full -mr-20 -mt-20 blur-3xl">
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-64 h-64 bg-primary/20 rounded-full -ml-10 -mb-10 blur-3xl">
+                    </div>
+                    <div class="relative z-10 flex flex-col items-center">
+                        <h2 class="text-text-main text-3xl md:text-5xl font-bold mb-6 font-display">Ready to find your
+                            flow?</h2>
+                        <p class="text-text-sub mb-10 text-lg max-w-xl mx-auto font-medium">Join thousands of walkers
+                            finding joy in every step. Download free on iOS and Android.</p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md">
+                            <button
+                                class="flex-1 flex items-center justify-center gap-3 rounded-full h-14 px-8 bg-text-main text-white font-bold hover:bg-opacity-90 hover:scale-105 transition-all shadow-lg shadow-text-main/20">
+                                <span class="material-symbols-outlined text-[24px]">ios</span>
+                                App Store
+                            </button>
+                            <button
+                                class="flex-1 flex items-center justify-center gap-3 rounded-full h-14 px-8 bg-white text-text-main font-bold hover:bg-slate-50 hover:scale-105 transition-all shadow-lg shadow-slate-200/50">
+                                <span class="material-symbols-outlined text-[24px]">android</span>
+                                Google Play
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="bg-white/30 backdrop-blur-sm py-12 px-6 lg:px-40 border-t border-slate-100">
+            <div class="max-w-[960px] mx-auto flex flex-col items-center gap-6 text-center">
+                <div class="flex items-center gap-2 text-sage-text mb-4">
+                    <span class="material-symbols-outlined">directions_walk</span>
+                    <span class="font-bold font-display text-xl">Walk It</span>
+                </div>
+                <div class="flex gap-8 text-sm text-text-sub font-medium">
+                    <a class="hover:text-sage-text transition-colors" href="privacy.html">Privacy</a>
+                    <a class="hover:text-sage-text transition-colors" href="account-deletion.html">Account Deletion</a>
 
-    <!-- <div class="social-icons">
-      <a href="https://discord.gg/8at5m9Bx" title="Discord" aria-label="Discord"><i
-          class="fa-brands fa-discord"></i></a>
-      <a href="https://x.com/walkitapp" title="X">𝕏</a>
-    </div> -->
+                </div>
+                <div class="w-full h-px bg-slate-200/50 max-w-xs my-2"></div>
+                <div class="space-y-3">
+                    <p class="text-text-sub text-xs">© 2026 Walk It Inc. All rights reserved.</p>
 
-    <nav>
-      <ul>
-        <li><a href="privacy.html">Privacy Policy</a></li>
-        <li><a href="account-deletion.html">Account Deletion</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <h1>WALK IT!</h1>
-    <p class="tagline">The lifestyle app that pays you to walk</p>
-    <div class="store-badges">
-      <div class="card">
-        <a href="#" title="Get it on Google Play" aria-label="Google Play"><i class="fa-brands fa-google-play"></i></a>
-      </div>
-      <div class="card">
-        <a href="#" title="Download on the App Store" aria-label="App Store"><i
-            class="fa-brands fa-app-store-ios"></i></a>
-      </div>
+                </div>
+            </div>
+        </footer>
     </div>
-  </main>
-
-  <div class="bottom-nav">
-    <div class="social-icons">
-      <a href="https://discord.gg/8at5m9Bx" title="Discord" aria-label="Discord" target="_blank"
-        rel="noopener noreferrer"><i class="fa-brands fa-discord"></i><span>Discord</span></a>
-      <a href="https://x.com/walkitapp" title="X" aria-label="X" target="_blank" rel="noopener noreferrer"><i
-          class="fa-brands fa-x-twitter"></i><span>X</span></a>
-    </div>
-  </div>
 
 </body>
 

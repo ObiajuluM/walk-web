@@ -2,199 +2,185 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Account Deletion • Walk It</title>
-    <link rel="icon" href="logo.png" type="image/png" />
-    <link rel="shortcut icon" href="logo.png" type="image/png" />
-    <link rel="apple-touch-icon" href="logo.png" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "rgb(80, 117, 231)",
+                        "primary-hover": "rgb(60, 97, 211)",
+                        "secondary": "rgb(120, 147, 231)",
+                        "accent": "rgb(100, 137, 231)",
+                        "text-main": "rgb(40, 57, 115)",
+                        "sage-text": "rgb(80, 117, 231)",
+                        "text-sub": "#64748B",
+                        "background-light": "rgb(235, 239, 252)",
+                    },
+                    fontFamily: {
+                        "display": ["Quicksand", "sans-serif"],
+                        "body": ["Montserrat", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "1.5rem",
+                        "xl": "2rem",
+                        "2xl": "2.5rem",
+                        "3xl": "3rem",
+                        "blob": "40% 60% 70% 30% / 40% 50% 60% 50%",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "soft": "0 20px 40px -10px rgba(134, 239, 172, 0.15)",
+                        "glow": "0 0 20px rgba(252, 211, 77, 0.5)"
+                    }
+                },
+            },
+        }
+    </script>
     <style>
-        /* Fonts to match the main site */
-        @import url('https://fonts.googleapis.com/css2?family=Nata+Sans:wght@400;600;800&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
-
-        :root {
-            --bg-1: rgba(65, 115, 243, 1);
-            --bg-2: rgba(112, 172, 185, 1);
-            --bg-3: rgba(241, 109, 117, 1);
-            --accent: #4da3ff;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Nata Sans', sans-serif;
-            min-height: 100vh;
-            background: linear-gradient(to bottom right, var(--bg-1), var(--bg-2), var(--bg-3));
-            color: white;
-            overflow-x: hidden;
-            cursor: url('logo.png'), auto;
-            display: grid;
-            place-items: center;
+            font-family: 'Montserrat', sans-serif;
+            background: rgb(235, 239, 252);
+            color: rgb(40, 57, 115);
         }
 
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 100px 24px 60px;
-            width: 100%;
+        h1,
+        h2,
+        h3,
+        .font-display {
+            font-family: 'Quicksand', sans-serif;
         }
 
-        /* Title styled like WALK IT with an animated gradient */
-        h1 {
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(42px, 14vw, 160px);
-            font-weight: 900;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            line-height: 1;
-            margin: 0 0 12px 0;
-            background: linear-gradient(180deg, #ffffff 0%, var(--accent) 100%);
-            background-size: 100% 200%;
-            animation: gradient-slide 6s ease-in-out infinite alternate;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-            filter: drop-shadow(0 2px 10px rgba(77, 163, 255, 0.25));
+        .bubble-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.5;
+            animation: float 10s ease-in-out infinite;
+            background: rgb(80, 117, 231) !important;
         }
 
-        @keyframes gradient-slide {
+        @keyframes float {
             0% {
-                background-position: 50% 0%;
+                transform: translateY(0px) scale(1);
+            }
+
+            50% {
+                transform: translateY(-20px) scale(1.05);
             }
 
             100% {
-                background-position: 50% 100%;
+                transform: translateY(0px) scale(1);
             }
-        }
-
-        .subtitle {
-            margin-top: 6px;
-            font-size: clamp(14px, 2.2vw, 22px);
-            font-weight: 600;
-            opacity: 0.95;
-        }
-
-        .content {
-            margin-top: 28px;
-            max-width: 900px;
-            width: min(90%, 900px);
-            text-align: left;
-            font-size: clamp(14px, 1.6vw, 18px);
-            line-height: 1.7;
-            opacity: 0.95;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            border-radius: 14px;
-            padding: 18px 20px;
-            margin-bottom: 14px;
-            backdrop-filter: blur(6px);
-        }
-
-        .card h2 {
-            margin: 0 0 6px 0;
-            font-size: 1.05em;
-            letter-spacing: 0.5px;
-        }
-
-        .card p {
-            margin: 0;
-        }
-
-        .card ol {
-            margin: 8px 0 0 18px;
-        }
-
-        .card li {
-            margin: 6px 0;
-        }
-
-        a {
-            color: #fff;
-        }
-
-        .back-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 14px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            backdrop-filter: blur(6px);
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform .2s ease, opacity .2s ease;
-            z-index: 1000;
-            pointer-events: auto;
-        }
-
-        .back-btn:hover {
-            transform: translateY(-2px);
-            opacity: 1;
-        }
-
-        .back-btn:active {
-            transform: translateY(0);
         }
     </style>
 </head>
 
-<body>
-    <a href="index.html" class="back-btn" aria-label="Back to Home">&#8592; Back</a>
-    <main>
-        <h1>Account Deletion</h1>
-        <p class="subtitle">For Walk It • Developer: Cheese Farmer</p>
-
-        <section class="content">
-            <div class="card">
-                <h2>How to request deletion</h2>
-                <ol>
-                    <li>Send an email to <a href="mailto:gm@walkitapp.com">gm@walkitapp.com</a> from the email address
-                        associated with the account you want to delete.</li>
-                    <li>Use the subject line: <strong>REQUEST FOR ACCOUNT DELETION</strong>.</li>
-                    <li>Optionally include any relevant details (e.g., your user ID) to help us locate the account.</li>
-                </ol>
+<body
+    class="bg-background-light text-slate-900 overflow-x-hidden antialiased selection:bg-primary selection:text-slate-900">
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-10">
+        <div class="bubble-shape bg-secondary w-[600px] h-[600px] top-[-15%] left-[-10%] opacity-30"></div>
+        <div class="bubble-shape bg-accent w-[500px] h-[500px] bottom-[-10%] right-[-10%] opacity-30 delay-1000"></div>
+        <div class="bubble-shape bg-primary w-[400px] h-[400px] top-[40%] right-[15%] opacity-20 delay-2000"></div>
+        <div class="bubble-shape bg-secondary w-[300px] h-[300px] bottom-[20%] left-[5%] opacity-20"></div>
+    </div>
+    <div class="relative flex min-h-screen w-full flex-col">
+        <header
+            class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap bg-background-light/80 backdrop-blur-md px-6 py-4 lg:px-40 border-b border-transparent">
+            <div class="flex items-center gap-2">
+                <a href="index.html"
+                    class="flex items-center justify-center size-10 bg-secondary/20 rounded-full text-sage-text hover:bg-secondary/40 transition-colors"
+                    aria-label="Home">
+                    <span class="material-symbols-outlined text-2xl">directions_walk</span>
+                </a>
+                <a href="index.html"
+                    class="text-sage-text text-2xl font-bold tracking-tight font-display hover:underline"
+                    style="text-decoration-thickness: 2px;">Walk It</a>
             </div>
-
-            <div class="card">
-                <h2>What gets deleted</h2>
-                <p>We delete all your data and activity associated with your Walk It account, including your account
-                    details (such as email and username) and your step/activity data.</p>
+            <nav class="hidden md:flex flex-1 justify-end items-center gap-8">
+                <div class="flex items-center gap-8 font-display">
+                    <a class="text-text-sub text-sm font-semibold hover:text-sage-text transition-colors"
+                        href="wem.html">Home</a>
+                    <a class="text-text-sub text-sm font-semibold hover:text-sage-text transition-colors"
+                        href="privacy.html">Privacy</a>
+                </div>
+            </nav>
+        </header>
+        <main class="flex-1">
+            <section class="relative px-6 py-16 lg:py-24 lg:px-40 flex flex-col items-center text-center">
+                <div class="max-w-[800px] flex flex-col gap-6 items-center z-10">
+                    <h1
+                        class="text-sage-text text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight font-display mb-4">
+                        Account Deletion</h1>
+                    <h2 class="text-text-sub text-lg md:text-xl font-medium leading-relaxed max-w-[600px] mb-8">For Walk
+                        It • Developer: Artichoke Dev</h2>
+                    <div
+                        class="w-full max-w-[900px] text-left text-text-main text-base md:text-lg font-medium space-y-8">
+                        <div class="bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl p-6">
+                            <h3 class="text-sage-text text-xl font-bold mb-2">How to request deletion</h3>
+                            <ol class="list-decimal ml-6">
+                                <li>Send an email to <a href="mailto:gm@walkitapp.com"
+                                        class="underline">gm@walkitapp.com</a> from the email address associated with
+                                    the account you want to delete.</li>
+                                <li>Use the subject line: <strong>REQUEST FOR ACCOUNT DELETION</strong>.</li>
+                                <li>Optionally include any relevant details (e.g., your user ID) to help us locate the
+                                    account.</li>
+                            </ol>
+                        </div>
+                        <div class="bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl p-6">
+                            <h3 class="text-sage-text text-xl font-bold mb-2">What gets deleted</h3>
+                            <p>We delete all your data and activity associated with your Walk It account, including your
+                                account details (such as email and username) and your step/activity data.</p>
+                        </div>
+                        <div class="bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl p-6">
+                            <h3 class="text-sage-text text-xl font-bold mb-2">Timeline and retention</h3>
+                            <p>We delete all your data and activity within <strong>14 working days</strong> of your
+                                verified request. <strong>No data is kept</strong> after deletion.</p>
+                        </div>
+                        <div class="bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl p-6">
+                            <h3 class="text-sage-text text-xl font-bold mb-2">Confirmation</h3>
+                            <p>We will notify you by email once your account has been deleted.</p>
+                        </div>
+                        <div class="bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl p-6">
+                            <h3 class="text-sage-text text-xl font-bold mb-2">Questions</h3>
+                            <p>If you have any questions about account deletion, contact us at <a
+                                    href="mailto:gm@walkitapp.com" class="underline">gm@walkitapp.com</a>.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="bg-white/30 backdrop-blur-sm py-12 px-6 lg:px-40 border-t border-slate-100">
+            <div class="max-w-[960px] mx-auto flex flex-col items-center gap-6 text-center">
+                <div class="flex items-center gap-2 text-sage-text mb-4">
+                    <span class="material-symbols-outlined">directions_walk</span>
+                    <span class="font-bold font-display text-xl">Walk It</span>
+                </div>
+                <div class="flex gap-8 text-sm text-text-sub font-medium">
+                    <a class="hover:text-sage-text transition-colors" href="privacy.html">Privacy</a>
+                    <a class="hover:text-sage-text transition-colors" href="account-deletion.html">Account
+                        Deletion</a>
+                </div>
+                <div class="w-full h-px bg-slate-200/50 max-w-xs my-2"></div>
+                <div class="space-y-3">
+                    <p class="text-text-sub text-xs">© 2026 Walk It Inc. All rights reserved.</p>
+                </div>
             </div>
-
-            <div class="card">
-                <h2>Timeline and retention</h2>
-                <p>We delete all your data and activity within <strong>14 working days</strong> of your verified
-                    request. <strong>No data is kept</strong> after deletion.</p>
-            </div>
-
-            <div class="card">
-                <h2>Confirmation</h2>
-                <p>We will notify you by email once your account has been deleted.</p>
-            </div>
-
-            <div class="card">
-                <h2>Questions</h2>
-                <p>If you have any questions about account deletion, contact us at <a
-                        href="mailto:gm@walkitapp.com">gm@walkitapp.com</a>.</p>
-            </div>
-        </section>
-    </main>
+        </footer>
+    </div>
 </body>
 
 </html>
